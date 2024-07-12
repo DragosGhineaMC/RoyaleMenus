@@ -27,6 +27,10 @@ public abstract class RoyaleMenu {
         return RoyaleMenuItem.EMPTY;
     }
 
+    public abstract RoyaleInventoryListener getListener();
+
+    public abstract void cleanup();
+
     public abstract void setItem(int slot, RoyaleMenuItem item);
 
     public abstract RoyaleMenuItem getItem(int slot);

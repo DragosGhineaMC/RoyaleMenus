@@ -11,4 +11,33 @@
 
     <artifactId>basic</artifactId>
 
+    <repositories>
+        <repository>
+            <id>codemc-repo</id>
+            <url>https://repo.codemc.io/repository/maven-public/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dragosghinea.royale.menus</groupId>
+            <artifactId>abstraction</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dragosghinea.royale.internal.utils</groupId>
+            <artifactId>basic</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
 </project>

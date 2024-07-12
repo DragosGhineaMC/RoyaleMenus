@@ -19,6 +19,10 @@ public abstract class IndividualRoyaleMenu extends RoyaleMenu {
 
     @Override
     public boolean openMenu(Player player) {
+        if (player != getInventoryHolder()) {
+            return false;
+        }
+
         player.openInventory(getInventory());
         return true;
     }
