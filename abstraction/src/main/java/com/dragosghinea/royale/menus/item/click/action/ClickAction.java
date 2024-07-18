@@ -1,5 +1,6 @@
-package com.dragosghinea.royale.menus;
+package com.dragosghinea.royale.menus.item.click.action;
 
+import com.dragosghinea.royale.menus.RoyaleMenu;
 import com.dragosghinea.royale.menus.events.RoyaleMenuClickEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.ClickType;

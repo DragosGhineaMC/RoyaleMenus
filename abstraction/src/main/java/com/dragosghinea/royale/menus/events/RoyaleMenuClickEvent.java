@@ -1,6 +1,6 @@
 package com.dragosghinea.royale.menus.events;
 
-import com.dragosghinea.royale.menus.ClickAction;
+import com.dragosghinea.royale.menus.item.click.action.ClickAction;
 import com.dragosghinea.royale.menus.RoyaleMenu;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

@@ -1,5 +1,6 @@
 package com.dragosghinea.royale.menus;
 
+import com.dragosghinea.royale.menus.item.RoyaleMenuItem;
 import com.dragosghinea.royale.menus.listener.RoyaleInventoryIndividualListenerImpl;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

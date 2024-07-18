@@ -1,5 +1,7 @@
-package com.dragosghinea.royale.menus;
+package com.dragosghinea.royale.menus.item;
 
+import com.dragosghinea.royale.menus.item.click.action.ClickAction;
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -14,6 +16,7 @@ public class RoyaleMenuItem {
 
     private final Function<ItemStack, ItemStack> markItem;
 
+    @Getter
     private final ClickAction[] clickActions;
 
     public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier) {
@@ -28,10 +31,6 @@ public class RoyaleMenuItem {
         this.itemSupplier = itemSupplier;
         this.markItem = markItem;
         this.clickActions = clickActions;
-    }
-
-    public ClickAction[] getClickActions() {
-        return clickActions;
     }
 
     public ItemStack getItem(Player player) {

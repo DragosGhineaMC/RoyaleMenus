@@ -2,7 +2,7 @@ package com.dragosghinea.royale.menus.listener;
 
 import com.dragosghinea.royale.menus.GlobalRoyaleMenuImpl;
 import com.dragosghinea.royale.menus.RoyaleInventoryListener;
-import com.dragosghinea.royale.menus.RoyaleMenuItem;
+import com.dragosghinea.royale.menus.item.RoyaleMenuItem;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;

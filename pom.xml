@@ -13,6 +13,22 @@
         <module>basic</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.dragosghinea.royale.internal.utils</groupId>
+                <artifactId>basic</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dragosghinea.royale.currencies</groupId>
+                <artifactId>RoyaleCurrencies</artifactId>
+                <version>1.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>

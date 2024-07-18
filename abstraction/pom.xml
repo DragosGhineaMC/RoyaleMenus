@@ -18,6 +18,23 @@
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.dragosghinea.royale.internal.utils</groupId>
+            <artifactId>basic</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dragosghinea.royale.currencies</groupId>
+            <artifactId>RoyaleCurrencies</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.34</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>
