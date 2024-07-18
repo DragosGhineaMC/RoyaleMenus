@@ -15,8 +15,7 @@ public class ClickAction {
     protected final ClickType clickType;
 
     public ClickAction(BiConsumer<RoyaleMenu, InventoryClickEvent> clickAction) {
-        this.clickAction = clickAction;
-        this.clickType = null;
+        this(clickAction, null);
     }
 
     public ClickAction(BiConsumer<RoyaleMenu, InventoryClickEvent> clickAction, ClickType clickType) {

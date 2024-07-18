@@ -19,4 +19,7 @@ public class ClickRequirementsHolderCfg extends ConfigValues {
 
     @JsonProperty("expression")
     protected List<ClickRequirementsHolderCfg> expression;
+
+    @JsonProperty("on-deny-actions")
+    protected List<String> onDenyActions;
 }

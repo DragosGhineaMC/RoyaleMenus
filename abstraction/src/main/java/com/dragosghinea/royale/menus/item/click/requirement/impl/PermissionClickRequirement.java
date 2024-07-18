@@ -11,12 +11,12 @@ public class PermissionClickRequirement extends ClickRequirement {
 
     private final String argument;
 
-    public PermissionClickRequirement(String argument, BiPredicate<RoyaleMenu, InventoryClickEvent> clickRequirement) {
-        this(argument, clickRequirement, null);
+    public PermissionClickRequirement(String argument) {
+        this(argument, null);
     }
 
-    public PermissionClickRequirement(String argument, BiPredicate<RoyaleMenu, InventoryClickEvent> clickRequirement, ClickType clickType) {
-        super(clickRequirement, clickType);
+    public PermissionClickRequirement(String argument, ClickType clickType) {
+        super((menu, event) -> event.getWhoClicked().hasPermission(argument), clickType);
         this.argument = argument;
     }
 
