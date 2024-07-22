@@ -1,6 +1,5 @@
 package com.dragosghinea.royale.menus.item.click.action.impl;
 
-import com.dragosghinea.royale.internal.utils.messages.MessageProcessor;
 import com.dragosghinea.royale.internal.utils.messages.StringMessageProcessorChain;
 import com.dragosghinea.royale.menus.item.click.action.ClickAction;
 import lombok.Getter;

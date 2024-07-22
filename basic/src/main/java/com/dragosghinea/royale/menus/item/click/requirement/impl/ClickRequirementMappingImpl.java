@@ -8,7 +8,6 @@ import com.dragosghinea.royale.menus.item.click.action.ClickActionCfg;
 import com.dragosghinea.royale.menus.item.click.action.ClickActionMapping;
 import com.dragosghinea.royale.menus.item.click.action.impl.ClickActionNoRequirementsMappingImpl;
 import com.dragosghinea.royale.menus.item.click.requirement.*;
-import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.util.List;
