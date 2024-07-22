@@ -27,17 +27,15 @@ public class ClickRequirementMappingImpl implements ClickRequirementMapping {
 
         ClickRequirementTypes reqType = clickRequirementCfg.getClickRequirementType();
 
-        ClickType clickType = clickRequirementCfg.getClickType() == null ? null : ClickType.valueOf(clickRequirementCfg.getClickType().toUpperCase());
-
         switch (reqType) {
             case HAS_MONEY:
-                clickRequirement = new MoneyClickRequirement(currency, clickRequirementCfg.getArgument(), clickType);
+                clickRequirement = new MoneyClickRequirement(currency, clickRequirementCfg.getArgument());
                 break;
             case HAS_PERMISSION:
-                clickRequirement = new PermissionClickRequirement(clickRequirementCfg.getArgument(), clickType);
+                clickRequirement = new PermissionClickRequirement(clickRequirementCfg.getArgument());
                 break;
             case UNKNOWN:
-                throw new IllegalArgumentException("Unknown click requirement type: " + clickRequirementCfg.getClickType());
+                throw new IllegalArgumentException("Unknown click requirement type: " + clickRequirementCfg.getClickRequirementType());
         }
 
         List<ClickAction> onDenyActions = clickRequirementCfg.getOnDenyActions().stream()

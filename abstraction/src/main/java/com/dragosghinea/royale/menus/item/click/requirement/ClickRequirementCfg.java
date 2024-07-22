@@ -34,9 +34,6 @@ public class ClickRequirementCfg extends ConfigValues {
         argument = split.length > 1 ? split[1] : null;
     }
 
-    @JsonProperty("click-type")
-    protected String clickType;
-
     @JsonProperty("on-deny-actions")
     protected List<String> onDenyActions;
 }
