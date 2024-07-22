@@ -16,6 +16,7 @@ import java.util.function.BiPredicate;
 
 public class ClickRequirement {
 
+    @Getter
     protected final BiPredicate<RoyaleMenu, InventoryClickEvent> clickRequirement;
 
     protected final ClickType clickType;
@@ -34,8 +35,8 @@ public class ClickRequirement {
     }
 
     public boolean hasRequirement(RoyaleMenu menu, InventoryClickEvent event) {
-        if (this.clickType != null && this.clickType.equals(event.getClick())) {
-            return false;
+        if (this.clickType != null && !this.clickType.equals(event.getClick())) {
+            return true;
         }
 
         return clickRequirement.test(menu, event);

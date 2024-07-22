@@ -1,6 +1,8 @@
 package com.dragosghinea.royale.menus.item.click.action;
 
+import com.dragosghinea.royale.menus.item.click.requirement.ClickRequirement;
 import com.dragosghinea.royale.menus.item.click.requirement.ClickRequirementCfg;
+import com.dragosghinea.royale.menus.item.click.requirement.ClickRequirementsHolderCfg;
 import com.dragosghinea.yaml.ConfigValues;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,6 +37,9 @@ public class ClickActionCfg extends ConfigValues {
     @JsonProperty("click-type")
     protected String clickType;
 
-    @JsonProperty("requirements")
-    protected ClickRequirementCfg getClickRequirements;
+    @JsonProperty("requirement")
+    protected ClickRequirementCfg clickRequirement;
+
+    @JsonProperty("requirements-expression")
+    protected ClickRequirementsHolderCfg clickRequirementsExpression;
 }

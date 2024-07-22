@@ -2,14 +2,18 @@ package com.dragosghinea.royale.menus.item.click.requirement.impl;
 
 import com.dragosghinea.royale.currencies.Currency;
 import com.dragosghinea.royale.currencies.vault.VaultCurrency;
+import com.dragosghinea.royale.menus.RoyaleMenu;
 import com.dragosghinea.royale.menus.item.click.action.ClickAction;
 import com.dragosghinea.royale.menus.item.click.action.ClickActionCfg;
 import com.dragosghinea.royale.menus.item.click.action.ClickActionMapping;
 import com.dragosghinea.royale.menus.item.click.action.impl.ClickActionNoRequirementsMappingImpl;
 import com.dragosghinea.royale.menus.item.click.requirement.*;
 import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 public class ClickRequirementMappingImpl implements ClickRequirementMapping {
@@ -21,9 +25,9 @@ public class ClickRequirementMappingImpl implements ClickRequirementMapping {
     public ClickRequirement mapFromConfig(ClickRequirementCfg clickRequirementCfg) {
         ClickRequirement clickRequirement = null;
 
-        ClickRequirementTypes reqType = ClickRequirementTypes.fromString(clickRequirementCfg.getClickType());
+        ClickRequirementTypes reqType = clickRequirementCfg.getClickRequirementType();
 
-        ClickType clickType = clickRequirementCfg.getClickRequirementType() == null ? null : ClickType.valueOf(clickRequirementCfg.getClickType().toUpperCase());
+        ClickType clickType = clickRequirementCfg.getClickType() == null ? null : ClickType.valueOf(clickRequirementCfg.getClickType().toUpperCase());
 
         switch (reqType) {
             case HAS_MONEY:
@@ -53,6 +57,31 @@ public class ClickRequirementMappingImpl implements ClickRequirementMapping {
 
     @Override
     public ClickRequirement computeFromConfigHolder(ClickRequirementsHolderCfg clickRequirementsHolderCfg) {
-        return null;
+        ClickRequirementsHolderTypes holderType = clickRequirementsHolderCfg.getHolderType();
+
+        List<ClickRequirement> clickRequirements = null;
+
+        if (clickRequirementsHolderCfg.getRequirements() != null)
+            clickRequirements = clickRequirementsHolderCfg.getRequirements().stream()
+                    .map(this::mapFromConfig)
+                    .collect(Collectors.toList());
+
+        if (clickRequirementsHolderCfg.getExpression() != null)
+            clickRequirements = clickRequirementsHolderCfg.getExpression().stream()
+                    .map(this::computeFromConfigHolder)
+                    .collect(Collectors.toList());
+
+        if (clickRequirements == null)
+            throw new RuntimeException("No click requirements found in the expression");
+
+        BinaryOperator<BiPredicate<RoyaleMenu, InventoryClickEvent>> accumulator = ClickRequirementsHolderTypes.AND.equals(holderType) ? BiPredicate::and : BiPredicate::or;
+
+        BiPredicate<RoyaleMenu, InventoryClickEvent> clickRequirement = clickRequirements
+                .stream()
+                .map(ClickRequirement::getClickRequirement)
+                .reduce(accumulator)
+                .orElse((menu, event) -> true);
+
+        return new ClickRequirement(clickRequirement);
     }
 }
