@@ -13,13 +13,9 @@ public class ConsoleCommandClickAction extends ClickAction {
     private final StringMessageProcessorChain messageProcessorChain;
 
     public ConsoleCommandClickAction(StringMessageProcessorChain messageProcessorChain, String argument) {
-        this(messageProcessorChain, argument, null);
-    }
-
-    public ConsoleCommandClickAction(StringMessageProcessorChain messageProcessorChain, String argument, ClickType clickType) {
         super((menu, event) -> {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), messageProcessorChain.processMessage(Bukkit.getConsoleSender(), argument));
-        }, clickType);
+        });
 
         this.argument = argument;
         this.messageProcessorChain = messageProcessorChain;

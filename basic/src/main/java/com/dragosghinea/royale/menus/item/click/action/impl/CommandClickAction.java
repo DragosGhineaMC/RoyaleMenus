@@ -12,13 +12,9 @@ public class CommandClickAction extends ClickAction {
     private final String argument;
 
     public CommandClickAction(StringMessageProcessorChain messageProcessorChain, String argument) {
-        this(messageProcessorChain, argument, null);
-    }
-
-    public CommandClickAction(StringMessageProcessorChain messageProcessorChain, String argument, ClickType clickType) {
         super((menu, event) -> {
-            Bukkit.dispatchCommand(event.getWhoClicked(), argument);
-        }, clickType);
+            Bukkit.dispatchCommand(event.getWhoClicked(), messageProcessorChain.processMessage(event.getWhoClicked(), argument));
+        });
 
         this.argument = argument;
     }

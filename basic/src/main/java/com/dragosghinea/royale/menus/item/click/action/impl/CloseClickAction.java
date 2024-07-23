@@ -6,12 +6,8 @@ import org.bukkit.event.inventory.ClickType;
 public class CloseClickAction extends ClickAction {
 
     public CloseClickAction() {
-        this(null);
-    }
-
-    public CloseClickAction(ClickType clickType) {
         super((menu, event) -> {
             event.getWhoClicked().closeInventory();
-        }, clickType);
+        });
     }
 }

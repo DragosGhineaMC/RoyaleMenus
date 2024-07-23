@@ -1,11 +1,12 @@
 package com.dragosghinea.royale.menus.item;
 
-import com.dragosghinea.royale.menus.item.click.action.ClickAction;
+import com.dragosghinea.royale.menus.item.click.action.ClickActionGroup;
 import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Collections;
 import java.util.function.Function;
 
 public class RoyaleMenuItem {
@@ -17,17 +18,17 @@ public class RoyaleMenuItem {
     private final Function<ItemStack, ItemStack> markItem;
 
     @Getter
-    private final ClickAction[] clickActions;
+    private final ClickActionGroup clickActions;
 
     public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier) {
-        this(itemSupplier, new ClickAction[0]);
+        this(itemSupplier, new ClickActionGroup(Collections.emptyList()));
     }
 
-    public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier, ClickAction... clickActions) {
+    public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier, ClickActionGroup clickActions) {
         this(itemSupplier, item -> item, clickActions);
     }
 
-    public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier, Function<ItemStack, ItemStack> markItem, ClickAction... clickActions) {
+    public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier, Function<ItemStack, ItemStack> markItem, ClickActionGroup clickActions) {
         this.itemSupplier = itemSupplier;
         this.markItem = markItem;
         this.clickActions = clickActions;

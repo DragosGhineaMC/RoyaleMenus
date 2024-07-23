@@ -4,4 +4,6 @@ public interface ClickActionMapping {
 
     ClickAction mapFromConfig(ClickActionCfg clickActionCfg);
 
+    ClickActionGroup mapFromConfig(ClickActionGroupCfg clickActionGroupCfg);
+
 }
