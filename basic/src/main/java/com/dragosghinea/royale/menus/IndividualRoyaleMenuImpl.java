@@ -70,6 +70,7 @@ public class IndividualRoyaleMenuImpl extends IndividualRoyaleMenu {
         return items.entrySet();
     }
 
+    @Override
     public RoyaleInventoryListener getListener() {
         return listener;
     }
