@@ -10,21 +10,21 @@ import lombok.Setter;
 public class ClickActionCfg extends ConfigValues {
 
     @JsonIgnore
-    protected ClickActionTypes actionType;
+    protected String actionType;
 
     @JsonIgnore
     protected String argument;
 
     public String getClickActionString() {
         if (argument == null || argument.isEmpty())
-            return actionType.getActionType();
+            return actionType;
 
-        return actionType.getActionType() + " " + argument;
+        return actionType + " " + argument;
     }
 
     public void setClickActionString(String clickActionString) {
         String[] split = clickActionString.split(" ");
-        actionType = ClickActionTypes.fromString(split[0]);
+        actionType = split[0].toUpperCase();
         argument = split.length > 1 ? split[1] : null;
     }
 

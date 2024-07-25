@@ -8,10 +8,11 @@ import com.dragosghinea.royale.internal.utils.messages.impl.processor.Placeholde
 import com.dragosghinea.royale.internal.utils.messages.impl.sender.PlainMessageSenderImpl;
 import com.dragosghinea.royale.menus.item.click.action.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.event.inventory.ClickType;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 // necessary mapping to avoid cyclic dependencies inside the click requirements
@@ -19,16 +20,24 @@ import java.util.stream.Collectors;
 public class ClickActionNoRequirementsMappingImpl implements ClickActionMapping {
     private final StringMessageProcessorChain messageProcessorChain;
     private final MessageSender messageSender;
+    @Getter
+    private final ClickActionMappingStorage clickActionMappingStorage;
 
     public ClickActionNoRequirementsMappingImpl() {
         this(
                 new StringMessageProcessorChainImpl(),
-                new PlainMessageSenderImpl()
+                new PlainMessageSenderImpl(),
+                new ClickActionMappingStorageImpl()
         );
         messageProcessorChain.addProcessor(new ColorMessageProcessorImpl());
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             messageProcessorChain.addProcessor(new PlaceholderAPIMessageProcessorImpl());
         }
+
+        clickActionMappingStorage.registerClickActionMapping("[message]", (argument) -> new MessageClickAction(messageSender, argument));
+        clickActionMappingStorage.registerClickActionMapping("[menu_close]", (argument) -> new CloseClickAction());
+        clickActionMappingStorage.registerClickActionMapping("[command]", (argument) -> new CommandClickAction(messageProcessorChain, argument));
+        clickActionMappingStorage.registerClickActionMapping("[console_command]", (argument) -> new ConsoleCommandClickAction(messageProcessorChain, argument));
     }
 
     @Override
@@ -46,27 +55,14 @@ public class ClickActionNoRequirementsMappingImpl implements ClickActionMapping 
 
     @Override
     public ClickAction mapFromConfig(ClickActionCfg clickActionCfg) {
-        ClickAction clickAction = null;
+        Function<String, ClickAction> clickActionFunction = clickActionMappingStorage.getClickActionMapping(clickActionCfg.getActionType());
 
-        ClickActionTypes clickActionType = clickActionCfg.getActionType();
-        switch (clickActionType) {
-            case MESSAGE:
-                clickAction = new MessageClickAction(messageSender, clickActionCfg.getArgument());
-                break;
-            case MENU_CLOSE:
-                clickAction = new CloseClickAction();
-                break;
-            case COMMAND:
-                clickAction = new CommandClickAction(messageProcessorChain, clickActionCfg.getArgument());
-                break;
-            case CONSOLE_COMMAND:
-                clickAction = new ConsoleCommandClickAction(messageProcessorChain, clickActionCfg.getArgument());
-                break;
-            case UNKNOWN:
-                throw new IllegalArgumentException("Unknown click action type: " + clickActionCfg.getActionType());
+        if (clickActionFunction == null) {
+            throw new IllegalArgumentException("Unknown click action type: " + clickActionCfg.getActionType());
         }
 
-        return clickAction;
+
+        return clickActionFunction.apply(clickActionCfg.getArgument());
     }
 
 }
