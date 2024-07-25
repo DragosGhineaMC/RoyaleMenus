@@ -3,13 +3,15 @@ package com.dragosghinea.royale.menus.item;
 import com.dragosghinea.royale.internal.utils.item.ItemStackCfg;
 import com.dragosghinea.royale.menus.item.click.action.ClickActionGroupCfg;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MenuItemStackCfg extends ItemStackCfg {
 
     @JsonProperty("click-actions")

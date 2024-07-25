@@ -2,11 +2,13 @@ package com.dragosghinea.royale.menus.item.click.action;
 
 import com.dragosghinea.yaml.ConfigValues;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClickActionCfg extends ConfigValues {
 
     @JsonIgnore
