@@ -3,10 +3,11 @@ package com.dragosghinea.royale.menus.item.click.action;
 import com.dragosghinea.yaml.ConfigValues;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClickActionCfg extends ConfigValues {

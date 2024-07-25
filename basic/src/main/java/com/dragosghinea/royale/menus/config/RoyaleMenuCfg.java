@@ -1,5 +1,6 @@
 package com.dragosghinea.royale.menus.config;
 
+import com.dragosghinea.royale.internal.utils.item.ItemStackCfg;
 import com.dragosghinea.royale.menus.RoyaleInventoryType;
 import com.dragosghinea.royale.menus.item.MenuItemStackCfg;
 import com.dragosghinea.yaml.ConfigValues;
@@ -24,7 +25,7 @@ public class RoyaleMenuCfg extends ConfigValues {
     private RoyaleInventoryType inventoryType;
 
     @JsonProperty("background-item")
-    private MenuItemStackCfg backgroundItem;
+    private ItemStackCfg backgroundItem;
 
     @JsonProperty("items")
     private List<MenuItemStackCfg> items;

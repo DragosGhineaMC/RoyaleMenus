@@ -3,12 +3,13 @@ package com.dragosghinea.royale.menus.item.click.requirement;
 import com.dragosghinea.yaml.ConfigValues;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClickRequirementsHolderCfg extends ConfigValues {

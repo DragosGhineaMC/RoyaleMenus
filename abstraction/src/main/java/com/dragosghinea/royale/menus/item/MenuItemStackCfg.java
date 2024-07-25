@@ -4,12 +4,13 @@ import com.dragosghinea.royale.internal.utils.item.ItemStackCfg;
 import com.dragosghinea.royale.menus.item.click.action.ClickActionGroupCfg;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class MenuItemStackCfg extends ItemStackCfg {
