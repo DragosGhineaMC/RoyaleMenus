@@ -8,7 +8,7 @@ import com.dragosghinea.yaml.annotations.Comments;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -28,6 +28,6 @@ public class RoyaleMenuCfg extends ConfigValues {
     private ItemStackCfg backgroundItem;
 
     @JsonProperty("items")
-    private List<MenuItemStackCfg> items;
+    private Map<String, MenuItemStackCfg> items;
 
 }
