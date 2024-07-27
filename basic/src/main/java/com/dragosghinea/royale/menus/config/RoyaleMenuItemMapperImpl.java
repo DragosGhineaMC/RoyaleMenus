@@ -5,6 +5,7 @@ import com.dragosghinea.royale.internal.utils.item.StandardCfgToItemStackMapper;
 import com.dragosghinea.royale.internal.utils.messages.StringMessageProcessorChain;
 import com.dragosghinea.royale.menus.item.MenuItemStackCfg;
 import com.dragosghinea.royale.menus.item.RoyaleMenuItem;
+import com.dragosghinea.royale.menus.item.click.action.ClickAction;
 import com.dragosghinea.royale.menus.item.click.action.ClickActionGroup;
 import com.dragosghinea.royale.menus.item.click.action.ClickActionMapping;
 import com.dragosghinea.royale.menus.item.click.action.impl.ClickActionMappingImpl;
@@ -16,12 +17,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class RoyaleMenuItemMapperImpl implements RoyaleMenuItemMapper {
 
     private final CfgToItemStackMapper itemStackMapper = new StandardCfgToItemStackMapper();
-    private final ClickActionMapping clickActionMapping = new ClickActionMappingImpl();
+    private final ClickActionMapping clickActionMapping;
     private final RoyaleItemMarker itemMarker;
     private final StringMessageProcessorChain messageProcessorChain;
 
@@ -47,8 +50,15 @@ public class RoyaleMenuItemMapperImpl implements RoyaleMenuItemMapper {
     }
 
     public RoyaleMenuItemMapperImpl(Plugin plugin, StringMessageProcessorChain messageProcessorChain) {
-        itemMarker = MarkerManager.getAvailableMarker(plugin);
+        this.itemMarker = MarkerManager.getAvailableMarker(plugin);
         this.messageProcessorChain = messageProcessorChain;
+        this.clickActionMapping = new ClickActionMappingImpl();
+    }
+
+    public RoyaleMenuItemMapperImpl(RoyaleItemMarker itemMarker, StringMessageProcessorChain messageProcessorChain, Map<String, Function<String, ClickAction>> extraClickActionMappings) {
+        this.itemMarker = itemMarker;
+        this.messageProcessorChain = messageProcessorChain;
+        this.clickActionMapping = new ClickActionMappingImpl(extraClickActionMappings);
     }
 
     @Override
