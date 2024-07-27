@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
 
 public class RoyaleMenuItem {
@@ -18,17 +19,17 @@ public class RoyaleMenuItem {
     private final Function<ItemStack, ItemStack> markItem;
 
     @Getter
-    private final ClickActionGroup clickActions;
+    private final List<ClickActionGroup> clickActions;
 
     public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier) {
-        this(itemSupplier, new ClickActionGroup(Collections.emptyList()));
+        this(itemSupplier, Collections.emptyList());
     }
 
-    public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier, ClickActionGroup clickActions) {
+    public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier, List<ClickActionGroup> clickActions) {
         this(itemSupplier, item -> item, clickActions);
     }
 
-    public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier, Function<ItemStack, ItemStack> markItem, ClickActionGroup clickActions) {
+    public RoyaleMenuItem(Function<Player, ItemStack> itemSupplier, Function<ItemStack, ItemStack> markItem, List<ClickActionGroup> clickActions) {
         this.itemSupplier = itemSupplier;
         this.markItem = markItem;
         this.clickActions = clickActions;

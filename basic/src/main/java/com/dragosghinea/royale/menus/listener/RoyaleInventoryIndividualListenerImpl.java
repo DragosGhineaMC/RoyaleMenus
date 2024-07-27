@@ -36,7 +36,7 @@ public class RoyaleInventoryIndividualListenerImpl implements RoyaleInventoryLis
         if (item == null)
             return;
 
-        item.getClickActions().click(individualRoyaleMenu, event);
+        item.getClickActions().forEach(action -> action.click(individualRoyaleMenu, event));
     }
 
     @Override

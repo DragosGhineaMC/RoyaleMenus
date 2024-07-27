@@ -15,6 +15,7 @@ import java.util.List;
 public class ClickRequirementsHolderCfg extends ConfigValues {
 
     @JsonProperty("type")
+    @Builder.Default
     protected ClickRequirementsHolderTypes holderType = ClickRequirementsHolderTypes.AND;
 
     @JsonProperty("requirements")

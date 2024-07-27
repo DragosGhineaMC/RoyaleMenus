@@ -36,7 +36,7 @@ public class RoyaleInventoryGlobalListenerImpl implements RoyaleInventoryListene
         if (item == null)
             return;
 
-        item.getClickActions().click(globalRoyaleMenu, event);
+        item.getClickActions().forEach(action -> action.click(globalRoyaleMenu, event));
     }
 
     @Override
