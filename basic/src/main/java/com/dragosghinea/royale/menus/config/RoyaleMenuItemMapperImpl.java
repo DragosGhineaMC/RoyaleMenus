@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -65,7 +66,7 @@ public class RoyaleMenuItemMapperImpl implements RoyaleMenuItemMapper {
     public RoyaleMenuItem mapFromConfig(MenuItemStackCfg cfg) {
         ItemStack itemStack = itemStackMapper.mapItemStack(cfg);
 
-        List<ClickActionGroup> clickActions = cfg.getClickActions().stream().map(clickActionMapping::mapFromConfig).collect(Collectors.toList());
+        List<ClickActionGroup> clickActions = cfg.getClickActions() == null ? Collections.emptyList() : cfg.getClickActions().stream().map(clickActionMapping::mapFromConfig).collect(Collectors.toList());
 
         return new RoyaleMenuItem(player -> applyMessageProcessorChain(player, itemStack), itemMarker::markItem, clickActions);
     }
