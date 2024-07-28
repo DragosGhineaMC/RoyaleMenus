@@ -56,8 +56,8 @@ public class RoyaleMenuItemMapperImpl implements RoyaleMenuItemMapper {
         this.clickActionMapping = new ClickActionMappingImpl();
     }
 
-    public RoyaleMenuItemMapperImpl(RoyaleItemMarker itemMarker, StringMessageProcessorChain messageProcessorChain, Map<String, Function<String, ClickAction>> extraClickActionMappings) {
-        this.itemMarker = itemMarker;
+    public RoyaleMenuItemMapperImpl(Plugin plugin, StringMessageProcessorChain messageProcessorChain, Map<String, Function<String, ClickAction>> extraClickActionMappings) {
+        this.itemMarker = MarkerManager.getAvailableMarker(plugin);
         this.messageProcessorChain = messageProcessorChain;
         this.clickActionMapping = new ClickActionMappingImpl(extraClickActionMappings);
     }
