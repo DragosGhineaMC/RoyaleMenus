@@ -41,7 +41,7 @@ public class RoyaleInventoryGlobalListenerImpl implements RoyaleInventoryListene
 
     @Override
     public synchronized void onInventoryClose(InventoryCloseEvent event) {
-        globalRoyaleMenu.cleanup();
+//        globalRoyaleMenu.cleanup();
     }
 
     @EventHandler
@@ -63,15 +63,17 @@ public class RoyaleInventoryGlobalListenerImpl implements RoyaleInventoryListene
         onInventoryClick(event);
     }
 
-    @EventHandler
-    public void onInventoryCloseHandler(InventoryCloseEvent event) {
-        if (!getInventory().equals(event.getInventory())) {
-            return;
-        }
+//    Should not be triggered on a global menu
 
-        onInventoryClose(event);
-        close();
-    }
+//    @EventHandler
+//    public void onInventoryCloseHandler(InventoryCloseEvent event) {
+//        if (!getInventory().equals(event.getInventory())) {
+//            return;
+//        }
+//
+//        onInventoryClose(event);
+//        close();
+//    }
 
     @Override
     public boolean isActive() {

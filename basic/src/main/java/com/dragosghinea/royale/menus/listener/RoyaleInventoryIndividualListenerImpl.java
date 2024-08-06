@@ -65,6 +65,10 @@ public class RoyaleInventoryIndividualListenerImpl implements RoyaleInventoryLis
 
     @EventHandler
     public void onInventoryCloseHandler(InventoryCloseEvent event) {
+        if (!event.getPlayer().equals(individualRoyaleMenu.getInventoryHolder())) {
+            return;
+        }
+
         if (!getInventory().equals(event.getInventory())) {
             return;
         }
