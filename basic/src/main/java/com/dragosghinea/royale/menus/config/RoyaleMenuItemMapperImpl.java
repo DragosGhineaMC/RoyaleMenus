@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,11 @@ public class RoyaleMenuItemMapperImpl implements RoyaleMenuItemMapper {
 
         if (itemMeta.hasLore() && itemMeta.getLore() != null) {
             List<String> lore = itemMeta.getLore();
-            itemMeta.setLore(lore.stream().map(loreLine -> messageProcessorChain.processMessage(player, loreLine)).collect(Collectors.toList()));
+            itemMeta.setLore(lore.stream()
+                    .map(loreLine -> messageProcessorChain.processMessage(player, loreLine))
+                    .flatMap(loreLine -> Arrays.stream(loreLine.split("%nl%")))
+                    .collect(Collectors.toList())
+            );
         }
 
         itemStack.setItemMeta(itemMeta);
