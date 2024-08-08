@@ -1,5 +1,11 @@
 package com.dragosghinea.royale.menus.listener;
 
+import com.dragosghinea.royale.internal.utils.messages.MessageSender;
+import com.dragosghinea.royale.internal.utils.messages.StringMessageProcessorChain;
+import com.dragosghinea.royale.internal.utils.messages.impl.StringMessageProcessorChainImpl;
+import com.dragosghinea.royale.internal.utils.messages.impl.processor.ColorMessageProcessorImpl;
+import com.dragosghinea.royale.internal.utils.messages.impl.processor.PlaceholderAPIMessageProcessorImpl;
+import com.dragosghinea.royale.internal.utils.messages.impl.sender.PlainMessageSenderImpl;
 import com.dragosghinea.royale.menus.IndividualRoyaleMenu;
 import com.dragosghinea.royale.menus.RoyaleInventoryListener;
 import com.dragosghinea.royale.menus.item.RoyaleMenuItem;
@@ -12,9 +18,16 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
 
-import java.util.Arrays;
-
 public class RoyaleInventoryIndividualListenerImpl implements RoyaleInventoryListener {
+    private final MessageSender messageSender = new PlainMessageSenderImpl();
+    private final StringMessageProcessorChain messageProcessorChain = new StringMessageProcessorChainImpl();
+
+    {
+        messageProcessorChain.addProcessor(new ColorMessageProcessorImpl());
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            messageProcessorChain.addProcessor(new PlaceholderAPIMessageProcessorImpl());
+        }
+    }
 
     private final IndividualRoyaleMenu individualRoyaleMenu;
 
@@ -32,6 +45,12 @@ public class RoyaleInventoryIndividualListenerImpl implements RoyaleInventoryLis
 
     @Override
     public synchronized void onInventoryClick(InventoryClickEvent event) {
+        if (individualRoyaleMenu.isClickingLocked()) {
+            if (individualRoyaleMenu.getClickingLockMessage() != null)
+                messageSender.sendMessage(event.getWhoClicked(), messageProcessorChain.processMessage(event.getWhoClicked(), individualRoyaleMenu.getClickingLockMessage()));
+            return;
+        }
+
         RoyaleMenuItem item = individualRoyaleMenu.getItem(event.getSlot());
         if (item == null)
             return;

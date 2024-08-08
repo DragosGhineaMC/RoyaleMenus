@@ -2,6 +2,9 @@ package com.dragosghinea.royale.menus;
 
 import com.dragosghinea.royale.menus.item.RoyaleMenuItem;
 import com.dragosghinea.royale.menus.listener.RoyaleInventoryGlobalListenerImpl;
+import com.dragosghinea.royale.menus.locking.RoyaleMenuLocking;
+import com.dragosghinea.royale.menus.locking.RoyaleMenuLockingImpl;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
@@ -12,6 +15,10 @@ import java.util.Map;
 public class GlobalRoyaleMenuImpl extends GlobalRoyaleMenu {
     private RoyaleInventoryListener listener;
     private Inventory inventory;
+
+    private final RoyaleMenuLocking locking = new RoyaleMenuLockingImpl();
+    @Setter
+    private String clickingLockMessage;
 
     private void createInventory(String title, RoyaleInventoryType inventoryType, Plugin plugin) {
         if (inventoryType.getInventoryType().equals(InventoryType.CHEST))
@@ -35,6 +42,26 @@ public class GlobalRoyaleMenuImpl extends GlobalRoyaleMenu {
     @Override
     public Inventory getInventory() {
         return inventory;
+    }
+
+    @Override
+    public void lockClicking() {
+        locking.lockClicking();
+    }
+
+    @Override
+    public void unlockClicking() {
+        locking.unlockClicking();
+    }
+
+    @Override
+    public boolean isClickingLocked() {
+        return locking.isLocked();
+    }
+
+    @Override
+    public String getClickingLockMessage() {
+        return clickingLockMessage;
     }
 
     @Override

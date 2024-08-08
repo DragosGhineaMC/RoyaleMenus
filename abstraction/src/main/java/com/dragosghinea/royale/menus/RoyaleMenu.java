@@ -22,6 +22,14 @@ public abstract class RoyaleMenu {
         }
     }
 
+    public abstract void lockClicking();
+
+    public abstract void unlockClicking();
+
+    public abstract boolean isClickingLocked();
+
+    public abstract String getClickingLockMessage();
+
     public abstract void triggerContentUpdate();
 
     public RoyaleMenuItem getBackgroundItem() {
