@@ -3,7 +3,7 @@ package com.dragosghinea.royale.menus.item.click.action;
 import com.dragosghinea.royale.menus.item.click.requirement.ClickRequirementCfg;
 import com.dragosghinea.royale.menus.item.click.requirement.ClickRequirementsHolderCfg;
 import com.dragosghinea.yaml.ConfigValues;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.dragosghinea.yaml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.bukkit.event.inventory.ClickType;

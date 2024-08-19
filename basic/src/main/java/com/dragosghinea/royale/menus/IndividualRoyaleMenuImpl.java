@@ -4,7 +4,6 @@ import com.dragosghinea.royale.menus.item.RoyaleMenuItem;
 import com.dragosghinea.royale.menus.listener.RoyaleInventoryIndividualListenerImpl;
 import com.dragosghinea.royale.menus.locking.RoyaleMenuLocking;
 import com.dragosghinea.royale.menus.locking.RoyaleMenuLockingImpl;
-import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

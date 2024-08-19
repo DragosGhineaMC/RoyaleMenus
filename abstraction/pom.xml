@@ -22,11 +22,13 @@
         <dependency>
             <groupId>com.dragosghinea.royale.internal.utils</groupId>
             <artifactId>basic</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.dragosghinea.royale.currencies</groupId>
             <artifactId>RoyaleCurrencies</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

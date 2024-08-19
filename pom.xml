@@ -19,6 +19,13 @@
                 <groupId>com.dragosghinea.royale.internal.utils</groupId>
                 <artifactId>basic</artifactId>
                 <version>1.0</version>
+                <exclusions>
+                    <!-- The required dependencies are shaded, no transitive dependencies required -->
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>

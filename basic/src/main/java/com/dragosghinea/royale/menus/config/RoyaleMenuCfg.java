@@ -5,7 +5,7 @@ import com.dragosghinea.royale.menus.RoyaleInventoryType;
 import com.dragosghinea.royale.menus.item.MenuItemStackCfg;
 import com.dragosghinea.yaml.ConfigValues;
 import com.dragosghinea.yaml.annotations.Comments;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.dragosghinea.yaml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.Map;

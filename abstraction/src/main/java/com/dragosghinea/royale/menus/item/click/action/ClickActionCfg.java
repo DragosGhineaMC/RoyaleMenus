@@ -1,7 +1,7 @@
 package com.dragosghinea.royale.menus.item.click.action;
 
 import com.dragosghinea.yaml.ConfigValues;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.dragosghinea.yaml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
