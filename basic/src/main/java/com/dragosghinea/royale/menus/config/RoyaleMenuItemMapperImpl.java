@@ -31,6 +31,8 @@ public class RoyaleMenuItemMapperImpl implements RoyaleMenuItemMapper {
     private final StringMessageProcessorChain messageProcessorChain;
 
     private ItemStack applyMessageProcessorChain(Player player, ItemStack itemStack) {
+        itemStack = itemStack.clone(); // To avoid modifying the original item stack
+
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta == null) {
             return itemStack;

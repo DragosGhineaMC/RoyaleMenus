@@ -18,6 +18,8 @@ public class PDCMarker implements RoyaleItemMarker{
 
     @Override
     public ItemStack markItem(ItemStack item) {
+        item = item.clone(); // To avoid modifying the original item stack
+
         final ItemMeta itemMeta = item.getItemMeta();
         if (itemMeta == null) {
             return item;
