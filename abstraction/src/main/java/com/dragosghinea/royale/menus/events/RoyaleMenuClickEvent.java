@@ -2,6 +2,7 @@ package com.dragosghinea.royale.menus.events;
 
 import com.dragosghinea.royale.menus.item.click.action.ClickAction;
 import com.dragosghinea.royale.menus.RoyaleMenu;
+import lombok.Getter;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -13,8 +14,10 @@ public class RoyaleMenuClickEvent extends Event implements Cancellable {
 
     private boolean isCancelled = false;
 
+    @Getter
     private final ClickAction clickAction;
 
+    @Getter
     private final RoyaleMenu menu;
 
     private final InventoryClickEvent event;
@@ -25,16 +28,8 @@ public class RoyaleMenuClickEvent extends Event implements Cancellable {
         this.event = event;
     }
 
-    public ClickAction getClickAction() {
-        return clickAction;
-    }
-
     public InventoryClickEvent getInventoryClickEvent() {
         return event;
-    }
-
-    public RoyaleMenu getMenu() {
-        return menu;
     }
 
     @Override

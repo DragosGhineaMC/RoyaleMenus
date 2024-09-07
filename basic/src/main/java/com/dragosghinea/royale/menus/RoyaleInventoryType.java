@@ -1,7 +1,9 @@
 package com.dragosghinea.royale.menus;
 
+import lombok.Getter;
 import org.bukkit.event.inventory.InventoryType;
 
+@Getter
 public enum RoyaleInventoryType {
     CHEST_1_ROW(InventoryType.CHEST, 9),
     CHEST_2_ROW(InventoryType.CHEST, 18),
@@ -20,11 +22,4 @@ public enum RoyaleInventoryType {
         this.size = size;
     }
 
-    public InventoryType getInventoryType() {
-        return inventoryType;
-    }
-
-    public int getSize() {
-        return size;
-    }
 }

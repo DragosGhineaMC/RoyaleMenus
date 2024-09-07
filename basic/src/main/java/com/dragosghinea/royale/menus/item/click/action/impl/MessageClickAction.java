@@ -11,9 +11,7 @@ public class MessageClickAction extends ClickAction {
     private final MessageSender messageSender;
 
     public MessageClickAction(MessageSender messageSender, String argument) {
-        super((menu, event) -> {
-            messageSender.sendMessage(event.getWhoClicked(), argument);
-        });
+        super((menu, event) -> messageSender.sendMessage(event.getWhoClicked(), argument));
 
         this.messageSender = messageSender;
         this.argument = argument;

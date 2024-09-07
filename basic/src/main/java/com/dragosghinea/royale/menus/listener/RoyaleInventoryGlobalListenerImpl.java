@@ -18,8 +18,6 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
 
-import java.util.Arrays;
-
 public class RoyaleInventoryGlobalListenerImpl implements RoyaleInventoryListener {
     private final MessageSender messageSender = new PlainMessageSenderImpl();
     private final StringMessageProcessorChain messageProcessorChain = new StringMessageProcessorChainImpl();
