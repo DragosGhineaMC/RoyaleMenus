@@ -10,6 +10,7 @@ import com.dragosghinea.royale.menus.item.click.action.impl.ClickActionNoRequire
 import com.dragosghinea.royale.menus.item.click.requirement.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.BinaryOperator;
@@ -50,19 +51,20 @@ public class ClickRequirementMappingImpl implements ClickRequirementMapping {
     public ClickRequirement computeFromConfigHolder(ClickRequirementsHolderCfg clickRequirementsHolderCfg) {
         ClickRequirementsHolderTypes holderType = clickRequirementsHolderCfg.getHolderType();
 
-        List<ClickRequirement> clickRequirements = null;
+        List<ClickRequirement> clickRequirements = new ArrayList<>();
 
         if (clickRequirementsHolderCfg.getRequirements() != null)
-            clickRequirements = clickRequirementsHolderCfg.getRequirements().stream()
-                    .map(this::mapFromConfig)
-                    .collect(Collectors.toList());
+            clickRequirements.addAll(
+                    clickRequirementsHolderCfg.getRequirements().stream()
+                            .map(this::mapFromConfig)
+                            .collect(Collectors.toList()));
 
         if (clickRequirementsHolderCfg.getExpression() != null)
-            clickRequirements = clickRequirementsHolderCfg.getExpression().stream()
+            clickRequirements.addAll(clickRequirementsHolderCfg.getExpression().stream()
                     .map(this::computeFromConfigHolder)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
 
-        if (clickRequirements == null)
+        if (clickRequirements.isEmpty())
             throw new RuntimeException("No click requirements found in the expression");
 
         BinaryOperator<BiPredicate<RoyaleMenu, InventoryClickEvent>> accumulator = ClickRequirementsHolderTypes.AND.equals(holderType) ? BiPredicate::and : BiPredicate::or;

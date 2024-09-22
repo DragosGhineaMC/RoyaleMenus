@@ -21,7 +21,7 @@ public class ClickRequirementsHolderCfg extends ConfigValues {
     @JsonProperty("requirements")
     protected List<ClickRequirementCfg> requirements;
 
-    @JsonProperty("expression")
+    @JsonProperty("more-expressions")
     protected List<ClickRequirementsHolderCfg> expression;
 
     @JsonProperty("on-deny-actions")
