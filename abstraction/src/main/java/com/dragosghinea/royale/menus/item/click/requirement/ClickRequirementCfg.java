@@ -21,7 +21,7 @@ public class ClickRequirementCfg extends ConfigValues {
     @JsonIgnore
     protected String argument;
 
-    @JsonProperty("requirement")
+    @JsonProperty("req")
     public String getRequirementString() {
         if (argument == null || argument.isEmpty())
             return clickRequirementType.getRequirementType();
@@ -29,7 +29,7 @@ public class ClickRequirementCfg extends ConfigValues {
         return clickRequirementType.getRequirementType()+ " " + argument;
     }
 
-    @JsonProperty("requirement")
+    @JsonProperty("req")
     public void setRequirementString(String requirementString) {
         String[] split = requirementString.split(" ");
         clickRequirementType = ClickRequirementTypes.fromString(split[0]);
