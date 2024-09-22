@@ -34,6 +34,7 @@ public class ClickActionGroup {
         }
 
         if (clickRequirement != null && !clickRequirement.hasRequirement(menu, event)) {
+            clickRequirement.getOnDenyActions().forEach(action -> action.click(menu, event));
             return false;
         }
 

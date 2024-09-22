@@ -73,6 +73,16 @@ public class ClickRequirementMappingImpl implements ClickRequirementMapping {
                 .reduce(accumulator)
                 .orElse((menu, event) -> true);
 
-        return new ClickRequirement(clickRequirement);
+        ClickRequirement req = new ClickRequirement(clickRequirement);
+        req.setOnDenyActions(clickRequirementsHolderCfg.getOnDenyActions().stream()
+                .map(str -> {
+                    ClickActionCfg clickActionCfg = new ClickActionCfg();
+                    clickActionCfg.setClickActionString(str);
+
+                    return clickActionCfg;
+                })
+                .map(clickActionMapping::mapFromConfig)
+                .collect(Collectors.toList()));
+        return req;
     }
 }
