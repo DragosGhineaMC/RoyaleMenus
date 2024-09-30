@@ -58,6 +58,10 @@ public class ClickActionNoRequirementsMappingImpl implements ClickActionMapping 
         Function<String, ClickAction> clickActionFunction = clickActionMappingStorage.getClickActionMapping(clickActionCfg.getActionType());
 
         if (clickActionFunction == null) {
+            clickActionFunction = ClickActionGlobalDefinitions.INSTANCE.getDefaultClickActionMappings().getOrDefault(clickActionCfg.getActionType(), null);
+        }
+
+        if (clickActionFunction == null) {
             throw new IllegalArgumentException("Unknown click action type: " + clickActionCfg.getActionType());
         }
 
