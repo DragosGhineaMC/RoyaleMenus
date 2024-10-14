@@ -34,7 +34,7 @@ public class ClickActionNoRequirementsMappingImpl implements ClickActionMapping 
             messageProcessorChain.addProcessor(new PlaceholderAPIMessageProcessorImpl());
         }
 
-        clickActionMappingStorage.registerClickActionMapping("[message]", (argument) -> new MessageClickAction(messageSender, argument));
+        clickActionMappingStorage.registerClickActionMapping("[message]", (argument) -> new MessageClickAction(messageSender, messageProcessorChain, argument));
         clickActionMappingStorage.registerClickActionMapping("[menu_close]", (argument) -> new CloseClickAction());
         clickActionMappingStorage.registerClickActionMapping("[command]", (argument) -> new CommandClickAction(messageProcessorChain, argument));
         clickActionMappingStorage.registerClickActionMapping("[console_command]", (argument) -> new ConsoleCommandClickAction(messageProcessorChain, argument));
