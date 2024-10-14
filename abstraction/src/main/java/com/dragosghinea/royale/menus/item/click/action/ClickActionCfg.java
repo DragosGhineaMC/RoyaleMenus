@@ -28,7 +28,7 @@ public class ClickActionCfg extends ConfigValues {
     public void setClickActionString(String clickActionString) {
         String[] split = clickActionString.split(" ");
         actionType = split[0].toUpperCase();
-        argument = split.length > 1 ? split[1] : null;
+        argument = split.length > 1 ? clickActionString.substring(actionType.length()+1) : null;
     }
 
 }
